@@ -1,38 +1,33 @@
 package com.kodilla.tictactoe;
 
-import java.util.Scanner;
-
 public class Board {
-    int[][] board = new int[3][3];
+    int[] board = new int[9];
+    int moveOfPlayer = 1;
 
     public Board() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                this.board[i][j] = -2;
-            }
+        for (int i = 0; i < 9; i++) {
+            this.board[i] = -2;
         }
     }
 
-    public int[][] getBoard() {
+    public void changeBoard(int move) {
+        if (moveOfPlayer == 1) {
+            board[move - 1] = 1;
+        } else {
+            board[move - 1] = 2;
+        }
+    }
+
+    public int[] getBoard() {
         return board;
+    }
+
+    public int getMoveOfPlayer() {
+        return moveOfPlayer;
+    }
+
+    public void setMoveOfPlayer(int moveOfPlayer) {
+        this.moveOfPlayer = moveOfPlayer;
     }
 }
 
-
-//
-//    public void makeMoveNo1(){
-//       int move = -1;
-//        instruction();
-//        move = input.nextInt();
-//        board[move-1] = "O";
-//    }
-//    public void makeMoveNo2(){
-//        int move = -1;
-//        instruction();
-//        move = input.nextInt();
-//        board[move-1] = "X";
-//    }
-//    boolean checkWinner(){
-//        return true;
-//    }
-//}

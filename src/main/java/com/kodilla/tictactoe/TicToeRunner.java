@@ -8,38 +8,44 @@ public class TicToeRunner {
         Scanner input = new Scanner(System.in);
         Board board = new Board();
         VisualBoard visualBoard = new VisualBoard();
-
+        GameStatus gameStatus = new GameStatus();
         visualBoard.instruction();
 
-        int numberOfMoves = 0;
-        while(numberOfMoves<9){
-            System.out.println("Player number 1 - O");
+        int move = 0;
+        while(true){
+            if(board.getMoveOfPlayer()==1){
+                System.out.println("Move of player number 1 - O: ");
+                move = input.nextInt();
+                board.changeBoard(move);
+                board.setMoveOfPlayer(2);
+            } else{
+                System.out.println("Move of player number 2 - X: ");
+                move = input.nextInt();
+                board.changeBoard(move);
+                board.setMoveOfPlayer(1);
+            }
+            visualBoard.showBoard(board);
 
-            System.out.println("Player number 2 - X");
 
-
-            if(GameStatus.checkWinner(board) ==1){
-                System.out.println("Wygrał gracz 1");
+            if(gameStatus.checkWinner(board) ==1){
+                System.out.println("The player number 1 won");
                 return;
             }
-            if(GameStatus.checkWinner(board) ==2){
-                System.out.printf("Wygral gracz 2");
+            if(gameStatus.checkWinner(board) ==2){
+                System.out.printf("The player nomber 2 won");
                 return;
             }
-            numberOfMoves++;
+            if(gameStatus.checkWinner(board) ==3){
+                System.out.println("It's a tie");
+                return;
+            }
+            if(gameStatus.isDraw(board)){
+                System.out.println("It's a tie");
+                return;
+            }
         }
-        System.out.println("It's a tie");
     }
 }
 
 
-//
-//        int numberOfMoves = 0;
-//        GameData gameData = new GameData();
-//        EntryHandling entryHandling = new EntryHandling();
-//        while(/*entryHandling.checkWinner() ||*/ numberOfMoves<9 ){
-//            entryHandling.showBoard();
-//            entryHandling.makeMoveNo1();
-//            entryHandling.showBoard();
-//            entryHandling.makeMoveNo2();
-//            numberOfMoves++;
+

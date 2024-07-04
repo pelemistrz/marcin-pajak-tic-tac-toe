@@ -10,15 +10,15 @@ public class VisualBoard {
     }
     public void showBoard(Board board){
         String boardString = "";
-        for(int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
-                switch(board.getBoard()[i][j]){
-                    case -2: boardString += "| "; break;
-                    case 1: boardString += "|O"; break;
-                    case 2: boardString += "|X"; break;
-                }
+        for(int i=1;i<10;i++){
+            switch(board.getBoard()[i-1]){
+                case -2: boardString += "| "; break;
+                case 1: boardString += "|O"; break;
+                case 2: boardString += "|X"; break;
             }
-            boardString += "|\n";
+            if(i%3==0){
+                boardString += "|\n";
+            }
         }
         System.out.println(boardString);
     }
