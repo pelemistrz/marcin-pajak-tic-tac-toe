@@ -26,17 +26,12 @@ public class TicToeRunner {
             }
             visualBoard.showBoard(board);
 
-
             if(gameStatus.checkWinner(board) ==1){
                 System.out.println("The player number 1 won");
                 return;
             }
             if(gameStatus.checkWinner(board) ==2){
                 System.out.printf("The player nomber 2 won");
-                return;
-            }
-            if(gameStatus.checkWinner(board) ==3){
-                System.out.println("It's a tie");
                 return;
             }
             if(gameStatus.isDraw(board)){

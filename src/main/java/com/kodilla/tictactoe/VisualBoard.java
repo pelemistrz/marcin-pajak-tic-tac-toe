@@ -12,7 +12,7 @@ public class VisualBoard {
         String boardString = "";
         for(int i=1;i<10;i++){
             switch(board.getBoard()[i-1]){
-                case -2: boardString += "| "; break;
+                case -2: boardString += "|"+i; break;
                 case 1: boardString += "|O"; break;
                 case 2: boardString += "|X"; break;
             }
