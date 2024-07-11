@@ -61,7 +61,7 @@ public class GameStatus {
         for(int i = 0; i <= sizeOfBoard-toHowManyStrikes; i++) {
             for(int j = 0; j <= sizeOfBoard-toHowManyStrikes; j++) {
                 for(int k = toHowManyStrikes-1; k >=0; k--) {
-                    count += tempBoard[i+k][j+k];
+                    count += tempBoard[i+toHowManyStrikes-1-k][j+k];
                 }
                 if(count == winO) {
                     return 1;
