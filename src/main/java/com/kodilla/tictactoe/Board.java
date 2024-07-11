@@ -1,24 +1,37 @@
 package com.kodilla.tictactoe;
 
 public class Board {
-    int[] board = new int[9];
+    int sizeBoard;
+    int[][] board;
     int moveOfPlayer = 1;
 
-    public Board() {
-        for (int i = 0; i < 9; i++) {
-            this.board[i] = -2;
+    public Board(int sizeBoard) {
+        this.sizeBoard = sizeBoard;
+        this.board = new int[sizeBoard][sizeBoard];
+        for (int i = 0; i < sizeBoard; i++) {
+            for(int j = 0; j < sizeBoard; j++) {
+                this.board[i][j] = 0;
+
+            }
         }
     }
 
     public void changeBoard(int move) {
+        int row = (int) (move-1)/sizeBoard;
+        int col =  (move-1)%sizeBoard;
         if (moveOfPlayer == 1) {
-            board[move - 1] = 1;
+
+            board[row][col] = -1;
         } else {
-            board[move - 1] = 2;
+            board[row][col] = 1;
         }
     }
 
-    public int[] getBoard() {
+    public int getSizeBoard() {
+        return sizeBoard;
+    }
+
+    public int[][] getBoard() {
         return board;
     }
 

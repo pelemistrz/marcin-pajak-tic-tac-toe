@@ -6,9 +6,21 @@ public class TicToeRunner {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Board board = new Board();
+
+        System.out.println("Please insert size of board");
+        int sizeOfBoard = input.nextInt();
+
+
+
+        Board board = new Board(sizeOfBoard);
         VisualBoard visualBoard = new VisualBoard();
         GameStatus gameStatus = new GameStatus();
+
+
+
+
+
+
         visualBoard.instruction();
 
         int move = 0;
@@ -24,20 +36,20 @@ public class TicToeRunner {
                 board.changeBoard(move);
                 board.setMoveOfPlayer(1);
             }
-            visualBoard.showBoard(board);
+            visualBoard.showBoard(board.getBoard());
 
-            if(gameStatus.checkWinner(board) ==1){
+            if(gameStatus.checkWinner(board.getBoard()) ==1){
                 System.out.println("The player number 1 won");
                 return;
             }
-            if(gameStatus.checkWinner(board) ==2){
+            if(gameStatus.checkWinner(board.getBoard()) ==2){
                 System.out.printf("The player nomber 2 won");
                 return;
             }
-            if(gameStatus.isDraw(board)){
-                System.out.println("It's a tie");
-                return;
-            }
+//            if(gameStatus.isDraw(board.getBoard())){
+//                System.out.println("It's a tie");
+//                return;
+//            }
         }
     }
 }

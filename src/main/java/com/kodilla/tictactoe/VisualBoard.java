@@ -8,10 +8,10 @@ public class VisualBoard {
         System.out.println("|"+4+"|"+5+"|"+6+"|");
         System.out.println("|"+7+"|"+8+"|"+9+"|");
     }
-    public void showBoard(Board board){
+    public void showBoard(int[] board){
         String boardString = "";
         for(int i=1;i<10;i++){
-            switch(board.getBoard()[i-1]){
+            switch(board[i-1]){
                 case -2: boardString += "|"+i; break;
                 case 1: boardString += "|O"; break;
                 case 2: boardString += "|X"; break;
