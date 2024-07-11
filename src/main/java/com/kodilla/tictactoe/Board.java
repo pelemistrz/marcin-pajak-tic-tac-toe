@@ -11,7 +11,6 @@ public class Board {
         for (int i = 0; i < sizeBoard; i++) {
             for(int j = 0; j < sizeBoard; j++) {
                 this.board[i][j] = 0;
-
             }
         }
     }
