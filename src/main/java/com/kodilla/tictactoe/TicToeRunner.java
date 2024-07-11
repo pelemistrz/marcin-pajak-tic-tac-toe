@@ -15,6 +15,7 @@ public class TicToeRunner {
         Board board = new Board(sizeOfBoard);
         VisualBoard visualBoard = new VisualBoard(sizeOfBoard);
         GameStatus gameStatus = new GameStatus(sizeOfBoard,toHowManyStrikes);
+        Computer computer = new Computer(sizeOfBoard);
 
         visualBoard.instruction();
         int move = 0;
@@ -23,19 +24,21 @@ public class TicToeRunner {
                 System.out.println("Move of player number 1 - O: ");
                 move = input.nextInt();
                 if(board.checkMove(move)){
-                    System.out.println("Please enter move which is in range and not taken");
+                    System.out.println("Please enter move which is in range and not taken\n");
                     continue;
                 }
-                board.changeBoard(move);
+                board.makeMove(move);
                 board.setMoveOfPlayer(2);
             } else{
                 System.out.println("Move of player number 2 - X: ");
-                move = input.nextInt();
-                if(board.checkMove(move)){
-                    System.out.println("Please enter move which is in range and not taken");
-                    continue;
-                }
-                board.changeBoard(move);
+                move = computer.computerMove(board.getBoard());
+//                System.out.println(move);
+//                move = input.nextInt();
+//                if(board.checkMove(move)){
+//                    System.out.println("Please enter move which is in range and not taken\n");
+//                    continue;
+//                }
+                board.makeMove(move);
                 board.setMoveOfPlayer(1);
             }
             visualBoard.showBoard(board.getBoard(),sizeOfBoard);

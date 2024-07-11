@@ -14,7 +14,6 @@ public class GameStatus {
         int winO = toHowManyStrikes;
         int winX = -toHowManyStrikes;
 
-
         for(int i = 0; i < sizeOfBoard; i++) {
             for(int j = 0; j <= sizeOfBoard-toHowManyStrikes; j++) {
                 for(int k = 0; k < toHowManyStrikes; k++) {

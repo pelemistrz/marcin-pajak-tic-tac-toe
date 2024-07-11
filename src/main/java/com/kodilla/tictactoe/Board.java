@@ -23,17 +23,15 @@ public class Board {
             return true;
         } else if(board[row][col] == 1 || board[row][col] == -1){
             return true;
-    } else {
+         } else {
             return false;
         }
     }
 
-
-    public void changeBoard(int move) {
+    public void makeMove(int move) {
         int row = (int) (move-1)/sizeBoard;
         int col =  (move-1)%sizeBoard;
         if (moveOfPlayer == 2) {
-
             board[row][col] = -1;
         } else {
             board[row][col] = 1;

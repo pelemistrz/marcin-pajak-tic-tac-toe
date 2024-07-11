@@ -9,8 +9,6 @@ public class VisualBoard {
     }
 
     public void instruction(){
-
-
         int n = 1;
         System.out.println("It is tic toe game. Make move by entering the number as below");
         for(int i = 0; i < sizeOfBoard; i++){
@@ -21,6 +19,7 @@ public class VisualBoard {
             System.out.print("|\n");
         }
     }
+
     public void showBoard(int[][] board, int sizeOfBoard){
         String boardString = "";
         int n = 1;
