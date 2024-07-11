@@ -1,7 +1,16 @@
 package com.kodilla.tictactoe;
 
 public class GameStatus {
-    public int checkResult(int[][] tempBoard, int sizeOfBoard, int toHowManyStrikes) {
+    private final int sizeOfBoard;
+    private final int toHowManyStrikes;
+
+    public GameStatus(int sizeOfBoard,int toHowManyStrikes) {
+        this.sizeOfBoard = sizeOfBoard;
+        this.toHowManyStrikes = toHowManyStrikes;
+    }
+
+
+    public int checkResult(int[][] tempBoard) {
         int count = 0;
         int winO = toHowManyStrikes;
         int winX = -toHowManyStrikes;

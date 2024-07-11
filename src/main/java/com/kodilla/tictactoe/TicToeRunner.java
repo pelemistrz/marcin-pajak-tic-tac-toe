@@ -9,20 +9,14 @@ public class TicToeRunner {
 
         System.out.println("Please insert size of board");
         int sizeOfBoard = input.nextInt();
-
-
+        System.out.println("Please insert how many strikes do you want play");
+        int toHowManyStrikes = input.nextInt();
 
         Board board = new Board(sizeOfBoard);
-        VisualBoard visualBoard = new VisualBoard();
-        GameStatus gameStatus = new GameStatus();
-
-
-
-
-
+        VisualBoard visualBoard = new VisualBoard(sizeOfBoard);
+        GameStatus gameStatus = new GameStatus(sizeOfBoard,toHowManyStrikes);
 
         visualBoard.instruction();
-
         int move = 0;
         while(true){
             if(board.getMoveOfPlayer()==1){
@@ -36,13 +30,13 @@ public class TicToeRunner {
                 board.changeBoard(move);
                 board.setMoveOfPlayer(1);
             }
-            visualBoard.showBoard(board.getBoard());
+            visualBoard.showBoard(board.getBoard(),sizeOfBoard);
 
-            if(gameStatus.checkWinner(board.getBoard()) ==1){
+            if(gameStatus.checkResult(board.getBoard()) ==1){
                 System.out.println("The player number 1 won");
                 return;
             }
-            if(gameStatus.checkWinner(board.getBoard()) ==2){
+            if(gameStatus.checkResult(board.getBoard()) ==-1){
                 System.out.printf("The player nomber 2 won");
                 return;
             }

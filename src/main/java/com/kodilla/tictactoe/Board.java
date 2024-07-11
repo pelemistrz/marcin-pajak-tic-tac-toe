@@ -19,7 +19,7 @@ public class Board {
     public void changeBoard(int move) {
         int row = (int) (move-1)/sizeBoard;
         int col =  (move-1)%sizeBoard;
-        if (moveOfPlayer == 1) {
+        if (moveOfPlayer == 2) {
 
             board[row][col] = -1;
         } else {
