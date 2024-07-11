@@ -19,14 +19,13 @@ public class Board {
     boolean checkMove(int move){
         int row = (int) (move-1)/sizeBoard;
         int col =  (move-1)%sizeBoard;
-        if(board[row][col] == 1 || board[row][col] == -1){
+        if (move<1 || move>sizeBoard*sizeBoard){
             return true;
-        } else if (move<1 || move>sizeBoard*sizeBoard){
+        } else if(board[row][col] == 1 || board[row][col] == -1){
             return true;
-        } else {
+    } else {
             return false;
         }
-
     }
 
 

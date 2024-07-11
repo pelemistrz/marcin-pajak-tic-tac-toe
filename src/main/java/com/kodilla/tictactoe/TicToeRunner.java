@@ -26,7 +26,6 @@ public class TicToeRunner {
                     System.out.println("Please enter move which is in range and not taken");
                     continue;
                 }
-
                 board.changeBoard(move);
                 board.setMoveOfPlayer(2);
             } else{
