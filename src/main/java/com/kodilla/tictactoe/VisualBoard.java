@@ -20,7 +20,6 @@ public class VisualBoard {
             }
             System.out.print("|\n");
         }
-
     }
     public void showBoard(int[][] board, int sizeOfBoard){
         String boardString = "";

@@ -22,11 +22,20 @@ public class TicToeRunner {
             if(board.getMoveOfPlayer()==1){
                 System.out.println("Move of player number 1 - O: ");
                 move = input.nextInt();
+                if(board.checkMove(move)){
+                    System.out.println("Please enter move which is in range and not taken");
+                    continue;
+                }
+
                 board.changeBoard(move);
                 board.setMoveOfPlayer(2);
             } else{
                 System.out.println("Move of player number 2 - X: ");
                 move = input.nextInt();
+                if(board.checkMove(move)){
+                    System.out.println("Please enter move which is in range and not taken");
+                    continue;
+                }
                 board.changeBoard(move);
                 board.setMoveOfPlayer(1);
             }
@@ -40,10 +49,10 @@ public class TicToeRunner {
                 System.out.printf("The player nomber 2 won");
                 return;
             }
-//            if(gameStatus.isDraw(board.getBoard())){
-//                System.out.println("It's a tie");
-//                return;
-//            }
+            if(gameStatus.isDraw(board.getBoard())){
+                System.out.println("It's a tie");
+                return;
+            }
         }
     }
 }

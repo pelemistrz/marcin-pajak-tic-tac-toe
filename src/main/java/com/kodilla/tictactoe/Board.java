@@ -16,6 +16,20 @@ public class Board {
         }
     }
 
+    boolean checkMove(int move){
+        int row = (int) (move-1)/sizeBoard;
+        int col =  (move-1)%sizeBoard;
+        if(board[row][col] == 1 || board[row][col] == -1){
+            return true;
+        } else if (move<1 || move>sizeBoard*sizeBoard){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+
     public void changeBoard(int move) {
         int row = (int) (move-1)/sizeBoard;
         int col =  (move-1)%sizeBoard;
