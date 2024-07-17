@@ -73,12 +73,11 @@ public class GameStatus {
         return 0;
     }
 
-    public boolean isDraw(int[][] board) {
-        boolean isDraw = true;
-        for(int i = 0; i < sizeOfBoard; i++){
-            for(int j = 0; j < sizeOfBoard; j++){
-                if(board[i][j] == 0) isDraw = false;
-                 }
+    public boolean isDraw(int howManyMovesHasBeenMade) {
+        boolean isDraw = false;
+        int maksNumbersOfMoves = sizeOfBoard*sizeOfBoard;
+        if(maksNumbersOfMoves == howManyMovesHasBeenMade) {
+            isDraw = true;
         }
         return isDraw;
     }

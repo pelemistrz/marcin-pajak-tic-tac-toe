@@ -4,6 +4,7 @@ public class Board {
     int sizeBoard;
     int[][] board;
     int moveOfPlayer = 1;
+    int howManyMovesHasBeenMade = 0;
 
     public Board(int sizeBoard) {
         this.sizeBoard = sizeBoard;
@@ -32,6 +33,7 @@ public class Board {
         } else {
             board[row][col] = 1;
         }
+        howManyMovesHasBeenMade++;
     }
 
     public int getSizeBoard() {
@@ -46,8 +48,13 @@ public class Board {
         return moveOfPlayer;
     }
 
+    public int getHowManyMovesHasBeenMade() {
+        return howManyMovesHasBeenMade;
+    }
+
     public void setMoveOfPlayer(int moveOfPlayer) {
         this.moveOfPlayer = moveOfPlayer;
     }
+
 }
 

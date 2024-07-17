@@ -60,7 +60,7 @@ public class TicToeRunner {
                 System.out.printf("The player nomber 2 won");
                 return;
             }
-            if(gameStatus.isDraw(board.getBoard())){
+            if(gameStatus.isDraw(board.getHowManyMovesHasBeenMade())){
                 System.out.println("It's a tie");
                 return;
             }
@@ -99,7 +99,7 @@ public class TicToeRunner {
                 System.out.printf("The player nomber 2 won");
                 return;
             }
-            if(gameStatus.isDraw(board.getBoard())){
+            if(gameStatus.isDraw(board.getHowManyMovesHasBeenMade())){
                 System.out.println("It's a tie");
                 return;
             }
