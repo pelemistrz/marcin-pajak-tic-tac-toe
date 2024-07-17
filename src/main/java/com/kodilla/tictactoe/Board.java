@@ -4,6 +4,7 @@ public class Board {
     int sizeBoard;
     int[][] board;
     int moveOfPlayer = 1;
+    int howManyMovesHasBeenMade = 0;
 
     public Board(int sizeBoard) {
         this.sizeBoard = sizeBoard;
@@ -15,15 +16,11 @@ public class Board {
         }
     }
 
-    boolean checkMove(int move){
+    public void checkMove(int move) throws ExceptionNotAllowedMove{
         int row = (int) (move-1)/sizeBoard;
         int col =  (move-1)%sizeBoard;
-        if (move<1 || move>sizeBoard*sizeBoard){
-            return true;
-        } else if(board[row][col] == 1 || board[row][col] == -1){
-            return true;
-         } else {
-            return false;
+        if (move<1 || move>sizeBoard*sizeBoard || board[row][col] == 1 || board[row][col] == -1) {
+            throw new ExceptionNotAllowedMove("Please enter move which is in range and not taken\n");
         }
     }
 
@@ -35,6 +32,7 @@ public class Board {
         } else {
             board[row][col] = 1;
         }
+        howManyMovesHasBeenMade++;
     }
 
     public int getSizeBoard() {
@@ -49,8 +47,13 @@ public class Board {
         return moveOfPlayer;
     }
 
+    public int getHowManyMovesHasBeenMade() {
+        return howManyMovesHasBeenMade;
+    }
+
     public void setMoveOfPlayer(int moveOfPlayer) {
         this.moveOfPlayer = moveOfPlayer;
     }
+
 }
 
