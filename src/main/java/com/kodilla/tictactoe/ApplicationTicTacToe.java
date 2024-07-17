@@ -66,14 +66,20 @@ public class ApplicationTicTacToe {
                 break;
                 default:
                     System.out.println("Invalid choice. Please enter 1 or 2");
-                    break;
+                break;
             }
-            TicToeRunner ticToeRunner = new TicToeRunner(sizeOfBoard,toHowManyStrikes,computerOrHuman,levelOfComputer);
-            if(computerOrHuman ==1){
-                ticToeRunner.playWithColleague();
+            if(sizeOfBoard ==-1){
+                continue;
             } else {
-                ticToeRunner.playWithComputer();
+                TicToeRunner ticToeRunner = new TicToeRunner(sizeOfBoard,toHowManyStrikes,computerOrHuman,levelOfComputer);
+                if(computerOrHuman ==1){
+                    ticToeRunner.playWithColleague();
+                } else {
+                    ticToeRunner.playWithComputer();
+                }
+
             }
+
         }
     }
 }

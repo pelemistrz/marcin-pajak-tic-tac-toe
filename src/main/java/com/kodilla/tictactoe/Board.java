@@ -22,7 +22,6 @@ public class Board {
         if (move<1 || move>sizeBoard*sizeBoard || board[row][col] == 1 || board[row][col] == -1) {
             throw new ExceptionNotAllowedMove("Please enter move which is in range and not taken\n");
         }
-
     }
 
     public void makeMove(int move) {
