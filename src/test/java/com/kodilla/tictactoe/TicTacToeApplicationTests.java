@@ -4,145 +4,127 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class TicTacToeApplicationTests {
     Board board1 ;
-    Board board2 ;
-    Board board3 ;
     GameStatus gameStatus ;
 
-
-    @BeforeEach
-    void setUp() {
+    @Test
+    void testNotAllowedMoves(){
+       //give
         Board board1 = new Board(3);
-        Board board2 = new Board(3);
-        Board board3 = new Board(3);
-        GameStatus gameStatus = new GameStatus(3,3);
+        board1.makeMove(2);
+        //when & then
+        assertAll(
+                () -> assertThrows(ExceptionNotAllowedMove.class,()->board1.checkMove(10)),
+                () -> assertThrows(ExceptionNotAllowedMove.class,()->board1.checkMove(2)),
+                () -> assertDoesNotThrow(()->board1.checkMove(4))
+        );
     }
-
 
     @Test
     void testWinRowsO() {
         //given
-
+        Board board1 = new Board(3);
+        GameStatus gameStatus = new GameStatus(3,3);
         //when
         board1.makeMove(1);
         board1.makeMove(2);
-        board1.makeMove(3);
-        board2.makeMove(4);
-        board2.makeMove(5);
-        board2.makeMove(6);
-        board3.makeMove(7);
-        board3.makeMove(8);
-        board3.makeMove(9);
+
         //then
-        assertEquals(1,gameStatus.checkResult(board1.getBoard()));
-       assertEquals(1,gameStatus.checkResult(board2.getBoard()));
-        assertEquals(1,gameStatus.checkResult(board3.getBoard()));
+       assertEquals(1,gameStatus.checkResult(board1.getBoard(),3,1));
     }
+
+    @Test
+    void testNotWinYetO(){
+        //given
+        Board board1 = new Board(3);
+        GameStatus gameStatus = new GameStatus(3,3);
+        //when
+        board1.makeMove(1);
+        //then
+        assertEquals(0,gameStatus.checkResult(board1.getBoard(),3,1));
+    }
+
     @Test
     void testWinRowsX() {
         //given
+        Board board1 = new Board(3);
+        GameStatus gameStatus = new GameStatus(3,3);
         board1.setMoveOfPlayer(2);
-        board2.setMoveOfPlayer(2);
-        board3.setMoveOfPlayer(2);
 
         //when
-        board1.makeMove(1);
-        board1.makeMove(2);
-        board1.makeMove(3);
-        board2.makeMove(4);
-        board2.makeMove(5);
-        board2.makeMove(6);
-        board3.makeMove(7);
-        board3.makeMove(8);
-        board3.makeMove(9);
+        board1.makeMove(4);
+        board1.makeMove(5);
+
 
         //then
-        assertEquals(-1,gameStatus.checkResult(board1.getBoard()));
-        assertEquals(-1,gameStatus.checkResult(board2.getBoard()));
-        assertEquals(-1,gameStatus.checkResult(board3.getBoard()));
+        assertEquals(-1,gameStatus.checkResult(board1.getBoard(),6,2));
     }
+
     @Test
     void testWinColumnO() {
         //given
+        Board board1 = new Board(3);
+        GameStatus gameStatus = new GameStatus(3,3);
 
         //when
         board1.makeMove(1);
         board1.makeMove(4);
-        board1.makeMove(7);
-        board2.makeMove(2);
-        board2.makeMove(5);
-        board2.makeMove(8);
-        board3.makeMove(3);
-        board3.makeMove(6);
-        board3.makeMove(9);
+
         //then
-        assertEquals(1,gameStatus.checkResult(board1.getBoard()));
-        assertEquals(1,gameStatus.checkResult(board2.getBoard()));
-        assertEquals(1,gameStatus.checkResult(board3.getBoard()));
+        assertEquals(1,gameStatus.checkResult(board1.getBoard(),7,1));
     }
+
     @Test
     void testWinColumnsX() {
         //given
-        board1.setMoveOfPlayer(2);
-        board2.setMoveOfPlayer(2);
-        board3.setMoveOfPlayer(2);
-
+        Board board1 = new Board(3);
         GameStatus gameStatus = new GameStatus(3,3);
+        board1.setMoveOfPlayer(2);
+
         //when & then
         board1.makeMove(1);
         board1.makeMove(4);
-        board1.makeMove(7);
-        board2.makeMove(2);
-        board2.makeMove(5);
-        board2.makeMove(8);
-        board3.makeMove(3);
-        board3.makeMove(6);
-        board3.makeMove(9);
 
-        assertEquals(-1,gameStatus.checkResult(board1.getBoard()));
-        assertEquals(-1,gameStatus.checkResult(board2.getBoard()));
-        assertEquals(-1,gameStatus.checkResult(board3.getBoard()));
+        assertEquals(-1,gameStatus.checkResult(board1.getBoard(),7,2));
     }
     @Test
     void testWinDiagonalO(){
         //given
+        Board board1 = new Board(3);
+        GameStatus gameStatus = new GameStatus(3,3);
 
         //when
         board1.makeMove(1);
         board1.makeMove(5);
-        board1.makeMove(9);
-        board2.makeMove(3);
-        board2.makeMove(5);
-        board2.makeMove(7);
+
         //then
-        assertEquals(1,gameStatus.checkResult(board1.getBoard()));
-        assertEquals(1,gameStatus.checkResult(board2.getBoard()));
+        assertEquals(1,gameStatus.checkResult(board1.getBoard(),9,1));
+
     }
     @Test
     void testWinDiagonalX(){
         //given
+        Board board1 = new Board(3);
+        GameStatus gameStatus = new GameStatus(3,3);
         board1.setMoveOfPlayer(2);
-        board2.setMoveOfPlayer(2);
 
         //when
         board1.makeMove(1);
         board1.makeMove(5);
-        board1.makeMove(9);
-        board2.makeMove(3);
-        board2.makeMove(5);
-        board2.makeMove(7);
+
         //then
-        assertEquals(-1,gameStatus.checkResult(board1.getBoard()));
-        assertEquals(-1,gameStatus.checkResult(board2.getBoard()));
+        assertEquals(-1,gameStatus.checkResult(board1.getBoard(),9,2));
+
     }
     @Test
     void testDraw(){
         //given
+        Board board1 = new Board(3);
+        GameStatus gameStatus = new GameStatus(3,3);
 
         //when
         board1.makeMove(1);
@@ -158,6 +140,6 @@ class TicTacToeApplicationTests {
         board1.makeMove(9);
 
         //then
-//        assertTrue(gameStatus.isDraw(board1.getBoard()));
+        assertTrue(gameStatus.isDraw(board1.getHowManyMovesHasBeenMade()));
     }
 }

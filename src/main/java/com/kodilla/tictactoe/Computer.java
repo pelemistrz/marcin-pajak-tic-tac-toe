@@ -26,6 +26,17 @@ public class Computer {
         return move;
     }
 
+//    public int findBestMove(int[][] board) {
+//        int bestMove = null;
+//        for()
+//            if(currentMove>bestMove){
+//                bestMove = currentMove;
+//            }
+//
+//        return bestMove;
+//
+//    }
+
 
 //    static Move findBestMove() {
 //        int bestVal = Integer.MIN_VALUE;

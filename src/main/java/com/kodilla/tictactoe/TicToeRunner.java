@@ -38,7 +38,6 @@ public class TicToeRunner {
                 }
                 board.makeMove(move);
 
-
                 if(gameStatus.checkResult(board.getBoard(),move,board.getMoveOfPlayer()) ==1){
                 System.out.println("The player number 1 won\n");
                 return;
@@ -60,20 +59,10 @@ public class TicToeRunner {
                     System.out.println("The player number 2 won\n");
                     return;
                 }
-
-
                 board.setMoveOfPlayer(1);
             }
             visualBoard.showBoard(board.getBoard());
 
-//            if(gameStatus.checkResult(board.getBoard()) ==1){
-//                System.out.println("The player number 1 won");
-//                return;
-//            }
-//            if(gameStatus.checkResult(board.getBoard()) ==-1){
-//                System.out.printf("The player nomber 2 won");
-//                return;
-//            }
             if(gameStatus.isDraw(board.getHowManyMovesHasBeenMade())){
                 System.out.println("It's a tie\n");
                 return;
@@ -96,23 +85,23 @@ public class TicToeRunner {
                     continue;
                 }
                 board.makeMove(move);
+                if(gameStatus.checkResult(board.getBoard(),move,board.getMoveOfPlayer()) ==1){
+                    System.out.println("The player number 1 won\n");
+                    return;
+                }
                 board.setMoveOfPlayer(2);
             } else{
                 System.out.println("Move of player number 2 - X: ");
                 move = computer.computerMove(board.getBoard());
                 board.makeMove(move);
+                if(gameStatus.checkResult(board.getBoard(),move,board.getMoveOfPlayer()) ==-1){
+                    System.out.println("The player number 2 won\n");
+                    return;
+                }
                 board.setMoveOfPlayer(1);
             }
             visualBoard.showBoard(board.getBoard());
 
-            if(gameStatus.checkResult(board.getBoard()) ==1){
-                System.out.println("The player number 1 won");
-                return;
-            }
-            if(gameStatus.checkResult(board.getBoard()) ==-1){
-                System.out.printf("The player nomber 2 won");
-                return;
-            }
             if(gameStatus.isDraw(board.getHowManyMovesHasBeenMade())){
                 System.out.println("It's a tie");
                 return;
