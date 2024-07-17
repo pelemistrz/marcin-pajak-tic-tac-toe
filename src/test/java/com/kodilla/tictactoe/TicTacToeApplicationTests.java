@@ -5,13 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class TicTacToeApplicationTests {
-    Board board1 = new Board(3);
-    Board board2 = new Board(3);
-    Board board3 = new Board(3);
-    GameStatus gameStatus = new GameStatus(3,3);
+    Board board1 ;
+    Board board2 ;
+    Board board3 ;
+    GameStatus gameStatus ;
 
 
     @BeforeEach
@@ -138,5 +139,25 @@ class TicTacToeApplicationTests {
         //then
         assertEquals(-1,gameStatus.checkResult(board1.getBoard()));
         assertEquals(-1,gameStatus.checkResult(board2.getBoard()));
+    }
+    @Test
+    void testDraw(){
+        //given
+
+        //when
+        board1.makeMove(1);
+        board1.makeMove(3);
+        board1.makeMove(4);
+        board1.makeMove(6);
+        board1.makeMove(8);
+
+        board1.setMoveOfPlayer(2);
+        board1.makeMove(2);
+        board1.makeMove(5);
+        board1.makeMove(7);
+        board1.makeMove(9);
+
+        //then
+        assertTrue(gameStatus.isDraw(board1.getBoard()));
     }
 }

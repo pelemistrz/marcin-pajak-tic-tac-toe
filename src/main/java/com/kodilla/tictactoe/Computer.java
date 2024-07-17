@@ -4,9 +4,11 @@ import java.util.Random;
 
 public class Computer {
     private final int sizeOfBoard;
+    private final int levelOfComputer;
 
-    public Computer(int sizeOfBoard) {
+    public Computer(int sizeOfBoard, int levelOfComputer) {
         this.sizeOfBoard = sizeOfBoard;
+        this.levelOfComputer = levelOfComputer;
     }
     public int computerMove(int[][] board) {
         Random rand = new Random();

@@ -20,7 +20,7 @@ public class VisualBoard {
         }
     }
 
-    public void showBoard(int[][] board, int sizeOfBoard){
+    public void showBoard(int[][] board){
         String boardString = "";
         int n = 1;
         for(int i=0;i<sizeOfBoard;i++) {
