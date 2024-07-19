@@ -1,13 +1,7 @@
 package com.kodilla.tictactoe;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FileWithUsers {
     private final String NAME_OF_FILE_WITH_USERS;
@@ -28,7 +22,7 @@ public class FileWithUsers {
         }
     }
 
-    public ArrayList<User>  loadUsersFromFile() {
+    public ArrayList<User> loadUsersFromFile() {
         File loadFile = new File(NAME_OF_FILE_WITH_USERS);
         ArrayList<User> users = new ArrayList<>();
         try {

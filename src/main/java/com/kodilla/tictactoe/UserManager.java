@@ -1,8 +1,11 @@
 package com.kodilla.tictactoe;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class UserManager {
     private int idLoggedUser;
@@ -48,7 +51,10 @@ public class UserManager {
         } else {
             userId = users.get(users.size()-1).getUserId()+1;
         }
-        User newUser = new User(userId, login, password, userName, userLastName);
+        String generatedHashedPassword = generateHashedPassword(password);
+
+        User newUser = new User(userId, login, generatedHashedPassword, userName, userLastName);
+
         users.add(newUser);
 
         for(User user : users){
@@ -56,13 +62,56 @@ public class UserManager {
         }
 
         fileWithUsers.saveAllUsersToTheFile(users);
-
     }
     public void userLogIn(){
-
+        Scanner input = new Scanner(System.in);
+        String login,password;
+        System.out.println("Please provide your login");
+        login = input.nextLine();
+        int i=0;
+        int sizeUsers = users.size();
+        while(i<sizeUsers){
+            if(users.get(i).getLogin().equals(login)){
+                for(int attempts = 0; attempts < 3; attempts++){
+                    System.out.println("Please enter your password. You have "+ (3-attempts)+" atempts");
+                    password = input.nextLine();
+                    String hashedPassword = generateHashedPassword(password);
+                    if(users.get(i).getPassword().equals(hashedPassword)){
+                        System.out.println("You have logged in\n");
+                        idLoggedUser = users.get(i).getUserId();
+                        return;
+                    }
+                }
+                System.out.println("You entered 3 times wrong password. Get back to main menu");
+            }
+            i++;
+        }
+        System.out.println("There is no user with this login");
     }
 
+    private String generateHashedPassword(String password){
+        String generatedPassword = null;
+        try
+        {
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
 
+            // Add password bytes to digest
+            md.update(password.getBytes());
 
+            // Get the hash's bytes
+            byte[] bytes = md.digest();
 
+            // This bytes[] has bytes in decimal format. Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < bytes.length; j++) {
+                sb.append(Integer.toString((bytes[j] & 0xff) + 0x100, 16).substring(1));
+            }
+            // Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return generatedPassword;
+    }
 }

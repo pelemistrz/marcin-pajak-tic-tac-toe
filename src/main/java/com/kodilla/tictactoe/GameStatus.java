@@ -35,13 +35,11 @@ public class GameStatus {
                 break;
             }
         }
-
         if(count == toHowManyStrikes-1){
             return XorO;
         }
         count = 0;
         //check column
-
         for(int i = 1; i< toHowManyStrikes && col+i<sizeOfBoard-1; i++){
             if(tempBoard[row][col+i] == XorO){
                 count++;
@@ -59,7 +57,6 @@ public class GameStatus {
         if(count == toHowManyStrikes-1){
             return XorO;
         }
-
         count = 0;
         //check antidiagonal
         for(int i = 1; i< toHowManyStrikes && col+i<sizeOfBoard-1 && row+i<sizeOfBoard-1; i++){
@@ -79,8 +76,6 @@ public class GameStatus {
         if(count == toHowManyStrikes-1){
             return XorO;
         }
-
-
         //check 1 diagonal
         count=0;
 
