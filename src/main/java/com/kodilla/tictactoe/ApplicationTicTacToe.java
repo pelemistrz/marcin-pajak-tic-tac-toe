@@ -36,6 +36,7 @@ public class ApplicationTicTacToe {
                 }
             }
             if (userManager.getIdLoggedUser() != 0) {
+
                 messeges.ticToeOptions();
                 choice = input.nextLine().charAt(0);
                 switch (choice) {

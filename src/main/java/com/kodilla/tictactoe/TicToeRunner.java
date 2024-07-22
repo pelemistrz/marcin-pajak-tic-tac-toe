@@ -71,7 +71,7 @@ public class TicToeRunner {
     }
 
     public void playWithComputer(){
-        Computer computer = new Computer(sizeOfBoard, levelOfComputer);
+       Computer computer = new Computer(sizeOfBoard);
         visualBoard.instruction();
         int move = 0;
         while(true){
@@ -92,7 +92,14 @@ public class TicToeRunner {
                 board.setMoveOfPlayer(2);
             } else{
                 System.out.println("Move of player number 2 - X: ");
-                move = computer.computerMove(board.getBoard());
+                if(levelOfComputer==1){
+                    move = computer.computerMove(board.getBoard());
+
+               } else {
+                    int [][] b =board.getBoard();
+                    move = computer.findBestMove(b);
+                }
+
                 board.makeMove(move);
                 if(gameStatus.checkResult(board.getBoard(),move,board.getMoveOfPlayer()) ==-1){
                     System.out.println("The player number 2 won\n");
