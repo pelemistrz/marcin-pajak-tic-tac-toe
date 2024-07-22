@@ -1,15 +1,13 @@
 package com.kodilla.tictactoe;
 
-import org.springframework.aop.scope.ScopedProxyUtils;
-
 import java.util.Scanner;
-
-import static java.lang.System.exit;
 
 public class ApplicationTicTacToe {
     public static void main(String[] args) {
 //    public void play() {
         UserManager userManager = new UserManager("Users.txt");
+        Messeges messeges = new Messeges();
+        boolean isGameOn = true;
 
         Scanner input = new Scanner(System.in);
         int sizeOfBoard = -1;
@@ -18,15 +16,9 @@ public class ApplicationTicTacToe {
         int levelOfComputer = -1;
 
         char choice;
-        while (true) {
-            if(userManager.getIdLoggedUser()==0){
-                System.out.println("      >>>> MAIN MENU   <<<<");
-                System.out.println("---------------------------");
-                System.out.println("1. Sign in");
-                System.out.println("2. Log in");
-                System.out.println("6. Exit");
-                System.out.println("---------------------------");
-                System.out.println("Enter your choice: ");
+        do {
+            if (userManager.getIdLoggedUser() == 0) {
+                messeges.mainMenu();
                 choice = input.nextLine().charAt(0);
                 switch (choice) {
                     case '1':
@@ -36,23 +28,15 @@ public class ApplicationTicTacToe {
                         userManager.userLogIn();
                         break;
                     case '6':
-                        exit(0);
+                        isGameOn = false;
                         break;
                     default:
-                        System.out.println("Invalid choice");
+                        System.out.println("Invalid choice\n");
                         break;
                 }
             }
-            if(userManager.getIdLoggedUser() !=0){
-
-
-                System.out.println("Welcome in TicTacToe game.");
-                System.out.println("---------------------------");
-                System.out.println("Please choose size of board and way of playing: \n1. 3x3 with colleague");
-                System.out.println("2. 3x3 with computer - level easy\n3. 3x3 with computer - level hard\n4. 10x10 with colleague");
-                System.out.println("5. 10x10 with computer");
-                System.out.println("6. Exit game");
-                System.out.println("Enter your choice: ");
+            if (userManager.getIdLoggedUser() != 0) {
+                messeges.ticToeOptions();
                 choice = input.nextLine().charAt(0);
                 switch (choice) {
                     case '1':
@@ -86,24 +70,23 @@ public class ApplicationTicTacToe {
                         levelOfComputer = 1;
                         break;
                     case '6':
-                        exit(0);
+                        isGameOn = false;
                         break;
                     default:
                         System.out.println("Invalid choice");
                         break;
                 }
-                if(sizeOfBoard ==-1){
-                    continue;
-                } else {
-                    TicToeRunner ticToeRunner = new TicToeRunner(sizeOfBoard,toHowManyStrikes,computerOrHuman,levelOfComputer);
-                    if(computerOrHuman ==1){
+                if (sizeOfBoard != -1) {
+                    TicToeRunner ticToeRunner = new TicToeRunner(sizeOfBoard, toHowManyStrikes, computerOrHuman, levelOfComputer);
+                    if (computerOrHuman == 1) {
                         ticToeRunner.playWithColleague();
                     } else {
                         ticToeRunner.playWithComputer();
                     }
                 }
             }
-        }
+        } while (isGameOn);
+        messeges.goodBye();
     }
 }
 

@@ -2,14 +2,12 @@ package com.kodilla.tictactoe;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class UserManager {
     private int idLoggedUser;
-    private ArrayList<User> users;
+    private List<User> users;
     private FileWithUsers fileWithUsers;
 
     public UserManager(String nameOfFileWithUser) {
@@ -49,7 +47,7 @@ public class UserManager {
         if(users.isEmpty()){
             userId = 1;
         } else {
-            userId = users.get(users.size()-1).getUserId()+1;
+            userId = users.getLast().getUserId()+1;
         }
         String generatedHashedPassword = generateHashedPassword(password);
 

@@ -21,8 +21,8 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        String userString = ""+userId +'|'+login + '|' + password + '|' + userName + '|' + userLastName + '|' + howManyWins +"";
-        return userString;   }
+        return ""+userId +'|'+login + '|' + password + '|' + userName + '|' + userLastName + '|' + howManyWins +"";
+          }
 
     public int getUserId() {
         return userId;
