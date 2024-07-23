@@ -1,11 +1,7 @@
 package com.kodilla.tictactoe;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 
 class TicTacToeApplicationTests {
     Board board1 ;
