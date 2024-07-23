@@ -120,6 +120,4 @@ public class UserStatistics {
     public void setHowManyDraws(int howManyDraws) {
         this.howManyDraws = howManyDraws;
     }
-
-
 }

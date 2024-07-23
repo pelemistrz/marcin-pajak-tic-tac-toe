@@ -72,26 +72,25 @@ public class ApplicationTicTacToe {
                     case '6':
                         userManager.showUserStatistics();
                         sizeOfBoard = -1;
-
                         break;
                     case '7':
                         isGameOn = false;
                         userManager.saveUserStatisticsToFile();
+                        sizeOfBoard = -1;
                         break;
                     default:
                         System.out.println("Invalid choice");
-                        sizeOfBoard = -1;
                         break;
                 }
                 if (sizeOfBoard != -1) {
-                    TicToeRunner ticToeRunner = new TicToeRunner(sizeOfBoard, toHowManyStrikes, computerOrHuman, levelOfComputer);
-                    int score = -1;
+                    TicToeRunner ticToeRunner = new TicToeRunner(sizeOfBoard, toHowManyStrikes, levelOfComputer);
+                    int gameResult;
                     if (computerOrHuman == 1) {
-                       score= ticToeRunner.playWithColleague();
+                       gameResult= ticToeRunner.playWithColleague();
                     } else {
-                        score = ticToeRunner.playWithComputer();
+                        gameResult = ticToeRunner.playWithComputer();
                     }
-                    switch(score){
+                    switch(gameResult){
                         case 1:
                             userManager.increaseNumberOfWins();
                             break;

@@ -4,28 +4,23 @@ import java.util.Scanner;
 
 public class TicToeRunner {
     private final int sizeOfBoard;
-    private final int toHowManyStrikes;
-    private final int computerOrHuman;
     private final int levelOfComputer;
     Board board;
     VisualBoard visualBoard;
     GameStatus gameStatus;
-    Scanner input;
+    Scanner input = new Scanner(System.in);
 
-    public TicToeRunner(int sizeOfBoard, int toHowManyStrikes, int computerOrHuman, int levelOfComputer) {
+    public TicToeRunner(int sizeOfBoard, int toHowManyStrikes, int levelOfComputer) {
         this.sizeOfBoard = sizeOfBoard;
-        this.toHowManyStrikes = toHowManyStrikes;
-        this.computerOrHuman = computerOrHuman;
         this.levelOfComputer = levelOfComputer;
         this.board = new Board(sizeOfBoard);
         this.visualBoard = new VisualBoard(sizeOfBoard);
         this.gameStatus = new GameStatus(sizeOfBoard,toHowManyStrikes);
-        this.input = new Scanner(System.in);
-    }
+      }
 
     public int playWithColleague() {
         visualBoard.instruction();
-        int move = 0;
+        int move;
         while(true){
             if(board.getMoveOfPlayer()==1){
                 System.out.println("Move of player number 1 - O: ");
@@ -73,7 +68,7 @@ public class TicToeRunner {
     public int playWithComputer(){
        Computer computer = new Computer(sizeOfBoard);
         visualBoard.instruction();
-        int move = 0;
+        int move;
         while(true){
             if(board.getMoveOfPlayer()==1){
                 System.out.println("Move of player number 1 - O: ");
