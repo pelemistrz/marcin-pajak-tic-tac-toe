@@ -23,7 +23,7 @@ public class TicToeRunner {
         this.input = new Scanner(System.in);
     }
 
-    public void playWithColleague() {
+    public int playWithColleague() {
         visualBoard.instruction();
         int move = 0;
         while(true){
@@ -40,7 +40,7 @@ public class TicToeRunner {
 
                 if(gameStatus.checkResult(board.getBoard(),move,board.getMoveOfPlayer()) ==1){
                 System.out.println("The player number 1 won\n");
-                return;
+                return 1;
                 }
 
                 board.setMoveOfPlayer(2);
@@ -57,7 +57,7 @@ public class TicToeRunner {
 
                 if(gameStatus.checkResult(board.getBoard(),move,board.getMoveOfPlayer()) ==-1){
                     System.out.println("The player number 2 won\n");
-                    return;
+                    return 2;
                 }
                 board.setMoveOfPlayer(1);
             }
@@ -65,12 +65,12 @@ public class TicToeRunner {
 
             if(gameStatus.isDraw(board.getHowManyMovesHasBeenMade())){
                 System.out.println("It's a tie\n");
-                return;
+                return 3;
             }
         }
     }
 
-    public void playWithComputer(){
+    public int playWithComputer(){
        Computer computer = new Computer(sizeOfBoard);
         visualBoard.instruction();
         int move = 0;
@@ -87,23 +87,22 @@ public class TicToeRunner {
                 board.makeMove(move);
                 if(gameStatus.checkResult(board.getBoard(),move,board.getMoveOfPlayer()) ==1){
                     System.out.println("The player number 1 won\n");
-                    return;
+                    return 1;
                 }
                 board.setMoveOfPlayer(2);
             } else{
                 System.out.println("Move of player number 2 - X: ");
+
                 if(levelOfComputer==1){
                     move = computer.computerMove(board.getBoard());
-
                } else {
-                    int [][] b =board.getBoard();
-                    move = computer.findBestMove(b);
+                    move = computer.findBestMove(board.getBoard());
                 }
 
                 board.makeMove(move);
                 if(gameStatus.checkResult(board.getBoard(),move,board.getMoveOfPlayer()) ==-1){
                     System.out.println("The player number 2 won\n");
-                    return;
+                    return 2;
                 }
                 board.setMoveOfPlayer(1);
             }
@@ -111,7 +110,7 @@ public class TicToeRunner {
 
             if(gameStatus.isDraw(board.getHowManyMovesHasBeenMade())){
                 System.out.println("It's a tie");
-                return;
+                return 3;
             }
         }
     }

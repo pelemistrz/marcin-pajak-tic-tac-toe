@@ -30,11 +30,11 @@ class TicTacToeApplicationTests {
         Board board1 = new Board(3);
         GameStatus gameStatus = new GameStatus(3,3);
         //when
-        board1.makeMove(1);
-        board1.makeMove(2);
+        board1.makeMove(6);
+        board1.makeMove(5);
 
         //then
-       assertEquals(1,gameStatus.checkResult(board1.getBoard(),3,1));
+       assertEquals(1,gameStatus.checkResult(board1.getBoard(),4,1));
     }
 
     @Test
@@ -113,11 +113,11 @@ class TicTacToeApplicationTests {
         board1.setMoveOfPlayer(2);
 
         //when
-        board1.makeMove(1);
+        board1.makeMove(7);
         board1.makeMove(5);
 
         //then
-        assertEquals(-1,gameStatus.checkResult(board1.getBoard(),9,2));
+        assertEquals(-1,gameStatus.checkResult(board1.getBoard(),3,2));
 
     }
     @Test

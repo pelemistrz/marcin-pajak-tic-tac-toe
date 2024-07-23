@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class ApplicationTicTacToe {
     public static void main(String[] args) {
-//    public void play() {
-        UserManager userManager = new UserManager("Users.txt");
+
+        UserManager userManager = new UserManager("Users.txt", "UsersStatistics.txt");
         Messeges messeges = new Messeges();
         boolean isGameOn = true;
 
@@ -27,7 +27,7 @@ public class ApplicationTicTacToe {
                     case '2':
                         userManager.userLogIn();
                         break;
-                    case '6':
+                    case '7':
                         isGameOn = false;
                         break;
                     default:
@@ -36,7 +36,6 @@ public class ApplicationTicTacToe {
                 }
             }
             if (userManager.getIdLoggedUser() != 0) {
-
                 messeges.ticToeOptions();
                 choice = input.nextLine().charAt(0);
                 switch (choice) {
@@ -71,21 +70,43 @@ public class ApplicationTicTacToe {
                         levelOfComputer = 1;
                         break;
                     case '6':
+                        userManager.showUserStatistics();
+                        sizeOfBoard = -1;
+
+                        break;
+                    case '7':
                         isGameOn = false;
+                        userManager.saveUserStatisticsToFile();
                         break;
                     default:
                         System.out.println("Invalid choice");
+                        sizeOfBoard = -1;
                         break;
                 }
                 if (sizeOfBoard != -1) {
                     TicToeRunner ticToeRunner = new TicToeRunner(sizeOfBoard, toHowManyStrikes, computerOrHuman, levelOfComputer);
+                    int score = -1;
                     if (computerOrHuman == 1) {
-                        ticToeRunner.playWithColleague();
+                       score= ticToeRunner.playWithColleague();
                     } else {
-                        ticToeRunner.playWithComputer();
+                        score = ticToeRunner.playWithComputer();
+                    }
+                    switch(score){
+                        case 1:
+                            userManager.increaseNumberOfWins();
+                            break;
+                        case 2:
+                            userManager.increaseNumberOfLoses();
+                            break;
+                        case 3:
+                            userManager.increaseNumberOfDraws();
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
+
         } while (isGameOn);
         messeges.goodBye();
     }

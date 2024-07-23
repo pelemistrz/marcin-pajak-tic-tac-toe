@@ -20,8 +20,8 @@ public class GameStatus {
         }
 
         int count = 0;
-        //check rows
-        for(int i = 1; i< toHowManyStrikes && row+i<sizeOfBoard-1; i++){
+        //check columns
+        for(int i = 1; i< toHowManyStrikes && row+i<sizeOfBoard; i++){
             if(tempBoard[row+i][col] == XorO){
                 count++;
             } else{
@@ -39,8 +39,8 @@ public class GameStatus {
             return XorO;
         }
         count = 0;
-        //check column
-        for(int i = 1; i< toHowManyStrikes && col+i<sizeOfBoard-1; i++){
+        //check rows
+        for(int i = 1; i< toHowManyStrikes && col+i<sizeOfBoard; i++){
             if(tempBoard[row][col+i] == XorO){
                 count++;
             } else{
@@ -59,7 +59,7 @@ public class GameStatus {
         }
         count = 0;
         //check antidiagonal
-        for(int i = 1; i< toHowManyStrikes && col+i<sizeOfBoard-1 && row+i<sizeOfBoard-1; i++){
+        for(int i = 1; i< toHowManyStrikes && col+i<sizeOfBoard && row+i<sizeOfBoard; i++){
             if(tempBoard[row+i][col+i] == XorO){
                 count++;
             } else{
@@ -79,14 +79,14 @@ public class GameStatus {
         //check 1 diagonal
         count=0;
 
-        for(int i = 1; i< toHowManyStrikes && col-i>=0 && row+i<sizeOfBoard-1; i++){
+        for(int i = 1; i< toHowManyStrikes && col-i>=0 && row+i<sizeOfBoard; i++){
             if(tempBoard[row+i][col-i] == XorO){
                 count++;
             } else{
                 break;
             }
         }
-        for(int i = 1; i< toHowManyStrikes && col+i<sizeOfBoard-1 && row-i>=0; i++){
+        for(int i = 1; i< toHowManyStrikes && col+i<sizeOfBoard && row-i>=0; i++){
             if(tempBoard[row-i][col+i] == XorO){
                 count++;
             } else{

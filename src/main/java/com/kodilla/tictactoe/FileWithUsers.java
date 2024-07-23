@@ -38,16 +38,10 @@ public class FileWithUsers {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        for(User user: users){
+            System.out.println(user.toString());
+        }
+
         return users;
     }
-
-//    public void addUserToTheFile(User user) {
-//        Path path = Paths.get("e:/"+NAME_OF_FILE_WITH_USERS);
-//        String userString = user.toString();
-//        try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,StandardOpenOption.CREATE,StandardOpenOption.APPEND)) {
-//            writer.append(userString);
-//        } catch (IOException e) {
-//            System.out.println("Error has happened " + e);
-//        }
-//    }
 }

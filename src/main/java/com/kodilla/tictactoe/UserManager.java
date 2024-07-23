@@ -1,5 +1,7 @@
 package com.kodilla.tictactoe;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -9,11 +11,13 @@ public class UserManager {
     private int idLoggedUser;
     private List<User> users;
     private FileWithUsers fileWithUsers;
+    private UserStatistics userStatistics;
 
-    public UserManager(String nameOfFileWithUser) {
+    public UserManager(String nameOfFileWithUser, String nameOfFileWithUserStatistics) {
         fileWithUsers = new FileWithUsers(nameOfFileWithUser);
        this.users = fileWithUsers.loadUsersFromFile();
        this.idLoggedUser = 0;
+       userStatistics = new UserStatistics(nameOfFileWithUserStatistics);
     }
     public int getIdLoggedUser() {
         return idLoggedUser;
@@ -77,6 +81,8 @@ public class UserManager {
                     if(users.get(i).getPassword().equals(hashedPassword)){
                         System.out.println("You have logged in\n");
                         idLoggedUser = users.get(i).getUserId();
+                        userStatistics.setUserId(idLoggedUser);
+                        userStatistics.loadUserStatistics();
                         return;
                     }
                 }
@@ -112,4 +118,32 @@ public class UserManager {
         }
         return generatedPassword;
     }
+
+    public void showUserStatistics() {
+        String show = "Played: "+userStatistics.getHowManyPlayed()+"\n"+
+                "Won: "+userStatistics.getHowManyWins()+"\n"+
+                "Lost: "+userStatistics.getHowManyLoses()+"\n"+
+                "Draw: "+userStatistics.getHowManyDraws()+"\n";
+        System.out.println(show);
+
+    }
+
+    public void increaseNumberOfWins() {
+        userStatistics.setHowManyPlayed(userStatistics.getHowManyPlayed()+1);
+        userStatistics.setHowManyWins(userStatistics.getHowManyWins()+1);
+    }
+
+    public void increaseNumberOfLoses() {
+        userStatistics.setHowManyPlayed(userStatistics.getHowManyPlayed()+1);
+        userStatistics.setHowManyLoses(userStatistics.getHowManyLoses()+1);
+    }
+    public void increaseNumberOfDraws() {
+        userStatistics.setHowManyPlayed(userStatistics.getHowManyPlayed()+1);
+        userStatistics.setHowManyDraws(userStatistics.getHowManyDraws()+1);
+    }
+
+    public void saveUserStatisticsToFile() {
+        userStatistics.saveUserStatisticsToFile(userStatistics.toString());
+    }
 }
+
