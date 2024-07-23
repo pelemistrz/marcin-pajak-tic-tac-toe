@@ -8,11 +8,9 @@ public class ApplicationTicTacToe {
         UserManager userManager = new UserManager("Users.txt", "UsersStatistics.txt");
         Messeges messeges = new Messeges();
         boolean isGameOn = true;
-
         Scanner input = new Scanner(System.in);
         int sizeOfBoard = -1;
         int toHowManyStrikes = -1;
-        int computerOrHuman = -1;
         int levelOfComputer = -1;
 
         char choice;
@@ -42,31 +40,26 @@ public class ApplicationTicTacToe {
                     case '1':
                         sizeOfBoard = 3;
                         toHowManyStrikes = 3;
-                        computerOrHuman = 1;
                         levelOfComputer = 0;
                         break;
                     case '2':
                         sizeOfBoard = 3;
                         toHowManyStrikes = 3;
-                        computerOrHuman = 2;
                         levelOfComputer = 1;
                         break;
                     case '3':
                         sizeOfBoard = 3;
                         toHowManyStrikes = 3;
-                        computerOrHuman = 2;
                         levelOfComputer = 2;
                         break;
                     case '4':
                         sizeOfBoard = 10;
                         toHowManyStrikes = 5;
-                        computerOrHuman = 1;
                         levelOfComputer = 0;
                         break;
                     case '5':
                         sizeOfBoard = 10;
                         toHowManyStrikes = 5;
-                        computerOrHuman = 2;
                         levelOfComputer = 1;
                         break;
                     case '6':
@@ -84,13 +77,10 @@ public class ApplicationTicTacToe {
                 }
                 if (sizeOfBoard != -1) {
                     TicToeRunner ticToeRunner = new TicToeRunner(sizeOfBoard, toHowManyStrikes, levelOfComputer);
-                    int gameResult;
-                    if (computerOrHuman == 1) {
-                       gameResult= ticToeRunner.playWithColleague();
-                    } else {
-                        gameResult = ticToeRunner.playWithComputer();
-                    }
-                    switch(gameResult){
+
+                     int gameResult= ticToeRunner.play();
+
+                     switch(gameResult){
                         case 1:
                             userManager.increaseNumberOfWins();
                             break;

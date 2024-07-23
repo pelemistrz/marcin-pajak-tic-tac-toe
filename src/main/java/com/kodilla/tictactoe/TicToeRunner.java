@@ -18,8 +18,9 @@ public class TicToeRunner {
         this.gameStatus = new GameStatus(sizeOfBoard,toHowManyStrikes);
       }
 
-    public int playWithColleague() {
+    public int play() {
         visualBoard.instruction();
+        Computer computer = new Computer(sizeOfBoard);
         int move;
         while(true){
             if(board.getMoveOfPlayer()==1){
@@ -41,7 +42,22 @@ public class TicToeRunner {
                 board.setMoveOfPlayer(2);
             } else{
                 System.out.println("Move of player number 2 - X: ");
-                move = input.nextInt();
+
+                switch(levelOfComputer){
+                    case 0:
+                        move = input.nextInt();
+                        break;
+                    case 1:
+                        move = computer.computerMove(board.getBoard());
+                        break;
+                    case 2:
+                        move = computer.findBestMove(board.getBoard());
+                        break;
+                    default:
+                        move = -1;
+                        break;
+                }
+
                 try{
                     board.checkMove(move);
                 } catch (ExceptionNotAllowedMove e) {
@@ -60,51 +76,6 @@ public class TicToeRunner {
 
             if(gameStatus.isDraw(board.getHowManyMovesHasBeenMade())){
                 System.out.println("It's a tie\n");
-                return 3;
-            }
-        }
-    }
-
-    public int playWithComputer(){
-       Computer computer = new Computer(sizeOfBoard);
-        visualBoard.instruction();
-        int move;
-        while(true){
-            if(board.getMoveOfPlayer()==1){
-                System.out.println("Move of player number 1 - O: ");
-                move = input.nextInt();
-                try{
-                    board.checkMove(move);
-                } catch (ExceptionNotAllowedMove e) {
-                    System.out.println(e.getMessage());
-                    continue;
-                }
-                board.makeMove(move);
-                if(gameStatus.checkResult(board.getBoard(),move,board.getMoveOfPlayer()) ==1){
-                    System.out.println("The player number 1 won\n");
-                    return 1;
-                }
-                board.setMoveOfPlayer(2);
-            } else{
-                System.out.println("Move of player number 2 - X: ");
-
-                if(levelOfComputer==1){
-                    move = computer.computerMove(board.getBoard());
-               } else {
-                    move = computer.findBestMove(board.getBoard());
-                }
-
-                board.makeMove(move);
-                if(gameStatus.checkResult(board.getBoard(),move,board.getMoveOfPlayer()) ==-1){
-                    System.out.println("The player number 2 won\n");
-                    return 2;
-                }
-                board.setMoveOfPlayer(1);
-            }
-            visualBoard.showBoard(board.getBoard());
-
-            if(gameStatus.isDraw(board.getHowManyMovesHasBeenMade())){
-                System.out.println("It's a tie");
                 return 3;
             }
         }
