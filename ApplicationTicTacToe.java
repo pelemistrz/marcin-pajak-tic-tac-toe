@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class ApplicationTicTacToe {
     public static void main(String[] args) {
-
         UserManager userManager = new UserManager("Users.txt", "UsersStatistics.txt");
         Messeges messeges = new Messeges();
         boolean isGameOn = true;
@@ -95,7 +94,6 @@ public class ApplicationTicTacToe {
                     }
                 }
             }
-
         } while (isGameOn);
         messeges.goodBye();
     }
