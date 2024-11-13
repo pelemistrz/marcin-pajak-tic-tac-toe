@@ -7,7 +7,6 @@ public class Computer {
     private final int sizeOfBoard;
     int opponent = 1, player = -1;
 
-
     public Computer(int sizeOfBoard) {
         this.sizeOfBoard = sizeOfBoard;
     }
